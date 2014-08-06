@@ -14,9 +14,10 @@ public class MediaSessionStatusAssert
     super(actual, MediaSessionStatusAssert.class);
   }
 
-  public MediaSessionStatusAssert hasSessionState(int state) {
+  public MediaSessionStatusAssert hasSessionState(@MediaSessionStatusState int state) {
     isNotNull();
     int actualState = actual.getSessionState();
+    //noinspection ResourceType
     assertThat(actualState) //
         .overridingErrorMessage("Expected session state <%s> but was <%s>.",
             sessionStateToString(state), sessionStateToString(actualState)) //
@@ -50,7 +51,7 @@ public class MediaSessionStatusAssert
     return this;
   }
 
-  private static String sessionStateToString(int state) {
+  private static String sessionStateToString(@MediaSessionStatusState int state) {
     switch (state) {
       case SESSION_STATE_ACTIVE:
         return "active";

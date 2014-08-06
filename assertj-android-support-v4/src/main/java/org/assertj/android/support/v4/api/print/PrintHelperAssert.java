@@ -16,9 +16,10 @@ public class PrintHelperAssert extends AbstractAssert<PrintHelperAssert, PrintHe
     super(actual, PrintHelperAssert.class);
   }
 
-  public PrintHelperAssert hasColorMode(int colorMode) {
+  public PrintHelperAssert hasColorMode(@PrintHelperColorMode int colorMode) {
     isNotNull();
     int actualColorMode = actual.getColorMode();
+    //noinspection ResourceType
     assertThat(actualColorMode) //
         .overridingErrorMessage("Expected color mode <%s> but was <%s>.",
             colorModeToString(colorMode), colorModeToString(actualColorMode)) //
@@ -26,9 +27,10 @@ public class PrintHelperAssert extends AbstractAssert<PrintHelperAssert, PrintHe
     return this;
   }
 
-  public PrintHelperAssert hasOrientation(int orientation) {
+  public PrintHelperAssert hasOrientation(@PrintHelperOrientation int orientation) {
     isNotNull();
     int actualOrientation = actual.getOrientation();
+    //noinspection ResourceType
     assertThat(actualOrientation) //
         .overridingErrorMessage("Expected orientation <%s> but was <%s>.",
             orientationToString(orientation), orientationToString(actualOrientation)) //
@@ -36,9 +38,10 @@ public class PrintHelperAssert extends AbstractAssert<PrintHelperAssert, PrintHe
     return this;
   }
 
-  public PrintHelperAssert hasScaleMode(int scaleMode) {
+  public PrintHelperAssert hasScaleMode(@PrintHelperScaleMode int scaleMode) {
     isNotNull();
     int actualScaleMode = actual.getScaleMode();
+    //noinspection ResourceType
     assertThat(actualScaleMode) //
         .overridingErrorMessage("Expected scale mode <%s> but was <%s>.",
             scaleModeToString(scaleMode), scaleModeToString(actualScaleMode)) //
@@ -46,7 +49,7 @@ public class PrintHelperAssert extends AbstractAssert<PrintHelperAssert, PrintHe
     return this;
   }
 
-  public static String colorModeToString(int colorMode) {
+  public static String colorModeToString(@PrintHelperColorMode int colorMode) {
     switch (colorMode) {
       case COLOR_MODE_COLOR:
         return "color";
@@ -57,7 +60,7 @@ public class PrintHelperAssert extends AbstractAssert<PrintHelperAssert, PrintHe
     }
   }
 
-  public static String orientationToString(int orientation) {
+  public static String orientationToString(@PrintHelperOrientation int orientation) {
     switch (orientation) {
       case ORIENTATION_LANDSCAPE:
         return "landscape";
@@ -68,7 +71,7 @@ public class PrintHelperAssert extends AbstractAssert<PrintHelperAssert, PrintHe
     }
   }
 
-  public static String scaleModeToString(int scaleMode) {
+  public static String scaleModeToString(@PrintHelperScaleMode int scaleMode) {
     switch (scaleMode) {
       case SCALE_MODE_FILL:
         return "fill";

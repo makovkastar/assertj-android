@@ -32,9 +32,10 @@ public class ActionBarAssert extends AbstractAssert<ActionBarAssert, ActionBar> 
     return this;
   }
 
-  public ActionBarAssert hasDisplayOptions(int options) {
+  public ActionBarAssert hasDisplayOptions(@ActionBarDisplayOptions int options) {
     isNotNull();
     final int actualOptions = actual.getDisplayOptions();
+    //noinspection ResourceType
     assertThat(actualOptions) //
         .overridingErrorMessage("Expected display options <%s> but was <%s>.",
             displayOptionsToString(options), displayOptionsToString(actualOptions)) //
@@ -60,9 +61,10 @@ public class ActionBarAssert extends AbstractAssert<ActionBarAssert, ActionBar> 
     return this;
   }
 
-  public ActionBarAssert hasNavigationMode(int mode) {
+  public ActionBarAssert hasNavigationMode(@ActionBarNavigationMode int mode) {
     isNotNull();
     int actualMode = actual.getNavigationMode();
+    //noinspection ResourceType
     assertThat(actualMode) //
         .overridingErrorMessage("Expected mode <%s> but was <%s>.", navigationModeToString(mode),
             navigationModeToString(actualMode)) //
@@ -133,7 +135,7 @@ public class ActionBarAssert extends AbstractAssert<ActionBarAssert, ActionBar> 
     return this;
   }
 
-  private static String navigationModeToString(int mode) {
+  private static String navigationModeToString(@ActionBarNavigationMode int mode) {
     switch (mode) {
       case NAVIGATION_MODE_LIST:
         return "list";

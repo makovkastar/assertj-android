@@ -63,9 +63,10 @@ public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
     return this;
   }
 
-  public IntentAssert hasFlags(int flags) {
+  public IntentAssert hasFlags(@IntentFlags int flags) {
     isNotNull();
     int expected = actual.getFlags();
+    //noinspection ResourceType
     assertThat(expected).overridingErrorMessage("Expected <%s> but was <%s>.",
         flagsToString(expected), flagsToString(flags)).isEqualTo(flags);
     return this;
@@ -103,7 +104,7 @@ public class IntentAssert extends AbstractAssert<IntentAssert, Intent> {
     return hasComponent(new ComponentName(appPkg, cls.getName()));
   }
 
-  public static String flagsToString(int flags) {
+  public static String flagsToString(@IntentFlags int flags) {
     return new BitMaskStringBuilder(flags) //
         .flag(FLAG_GRANT_READ_URI_PERMISSION, "grant_read_uri_permission")
         .flag(FLAG_GRANT_WRITE_URI_PERMISSION, "grant_write_uri_permission")

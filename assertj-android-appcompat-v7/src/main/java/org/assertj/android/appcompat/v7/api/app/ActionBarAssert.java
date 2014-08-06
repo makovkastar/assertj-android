@@ -28,9 +28,10 @@ public class ActionBarAssert extends AbstractAssert<ActionBarAssert, ActionBar> 
     return this;
   }
 
-  public ActionBarAssert hasDisplayOptions(int options) {
+  public ActionBarAssert hasDisplayOptions(@ActionBarDisplayOptions int options) {
     isNotNull();
     final int actualOptions = actual.getDisplayOptions();
+    //noinspection ResourceType
     assertThat(actualOptions) //
         .overridingErrorMessage("Expected display options <%s> but was <%s>.",
             displayOptionsToString(options), displayOptionsToString(actualOptions)) //
@@ -59,6 +60,7 @@ public class ActionBarAssert extends AbstractAssert<ActionBarAssert, ActionBar> 
   public ActionBarAssert hasNavigationMode(int mode) {
     isNotNull();
     int actualMode = actual.getNavigationMode();
+    //noinspection ResourceType
     assertThat(actualMode) //
         .overridingErrorMessage("Expected mode <%s> but was <%s>.", navigationModeToString(mode),
             navigationModeToString(actualMode)) //
@@ -126,7 +128,7 @@ public class ActionBarAssert extends AbstractAssert<ActionBarAssert, ActionBar> 
     return this;
   }
 
-  private static String navigationModeToString(int mode) {
+  private static String navigationModeToString(@ActionBarNavigationMode int mode) {
     switch (mode) {
       case NAVIGATION_MODE_LIST:
         return "list";
@@ -139,7 +141,7 @@ public class ActionBarAssert extends AbstractAssert<ActionBarAssert, ActionBar> 
     }
   }
 
-  private static String displayOptionsToString(int options) {
+  private static String displayOptionsToString(@ActionBarDisplayOptions int options) {
     return new BitMaskStringBuilder(options) //
         .flag(DISPLAY_HOME_AS_UP, "homeAsUp")
         .flag(DISPLAY_SHOW_CUSTOM, "showCustom")

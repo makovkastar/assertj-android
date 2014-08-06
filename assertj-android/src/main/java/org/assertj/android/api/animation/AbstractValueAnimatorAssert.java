@@ -58,9 +58,10 @@ public abstract class AbstractValueAnimatorAssert<S extends AbstractValueAnimato
     return myself;
   }
 
-  public S hasRepeatMode(int mode) {
+  public S hasRepeatMode(@ValueAnimatorRepeatMode int mode) {
     isNotNull();
     int actualMode = actual.getRepeatMode();
+    //noinspection ResourceType
     assertThat(actualMode) //
         .overridingErrorMessage("Expected repeat mode <%s> but was <%s>.", repeatModeToString(mode),
             repeatModeToString(actualMode)) //
@@ -75,7 +76,7 @@ public abstract class AbstractValueAnimatorAssert<S extends AbstractValueAnimato
     return Integer.toString(count);
   }
 
-  private static String repeatModeToString(int mode) {
+  private static String repeatModeToString(@ValueAnimatorRepeatMode int mode) {
     switch (mode) {
       case RESTART:
         return "restart";

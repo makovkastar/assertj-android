@@ -15,9 +15,10 @@ public class GridLayoutAssert extends AbstractViewGroupAssert<GridLayoutAssert, 
     super(actual, GridLayoutAssert.class);
   }
 
-  public GridLayoutAssert hasAlignmentMode(int mode) {
+  public GridLayoutAssert hasAlignmentMode(@GridLayoutAlignmentMode int mode) {
     isNotNull();
     int actualMode = actual.getAlignmentMode();
+    //noinspection ResourceType
     assertThat(actualMode) //
         .overridingErrorMessage("Expected alignment mode <%s> but was <%s>.",
             alignmentModeToString(mode), alignmentModeToString(actualMode)) //
@@ -34,9 +35,10 @@ public class GridLayoutAssert extends AbstractViewGroupAssert<GridLayoutAssert, 
     return this;
   }
 
-  public GridLayoutAssert hasOrientation(int orientation) {
+  public GridLayoutAssert hasOrientation(@GridLayoutOrientation int orientation) {
     isNotNull();
     int actualOrientation = actual.getOrientation();
+    //noinspection ResourceType
     assertThat(actualOrientation) //
         .overridingErrorMessage("Expected orientation <%s> but was <%s>.",
             orientationToString(orientation), orientationToString(actualOrientation)) //
@@ -109,7 +111,7 @@ public class GridLayoutAssert extends AbstractViewGroupAssert<GridLayoutAssert, 
     return this;
   }
 
-  private static String alignmentModeToString(int mode) {
+  private static String alignmentModeToString(@GridLayoutAlignmentMode int mode) {
     switch (mode) {
       case ALIGN_BOUNDS:
         return "alignBounds";
@@ -120,7 +122,7 @@ public class GridLayoutAssert extends AbstractViewGroupAssert<GridLayoutAssert, 
     }
   }
 
-  private static String orientationToString(int orientation) {
+  private static String orientationToString(@GridLayoutOrientation int orientation) {
     switch (orientation) {
       case HORIZONTAL:
         return "horizontal";
