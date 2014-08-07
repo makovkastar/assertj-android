@@ -66,9 +66,10 @@ public class GestureOverlayViewAssert
     return this;
   }
 
-  public GestureOverlayViewAssert hasGestureStokeType(int type) {
+  public GestureOverlayViewAssert hasGestureStokeType(@GestureOverlayViewGestureStrokeType int type) {
     isNotNull();
     int actualType = actual.getGestureStrokeType();
+    //noinspection ResourceType
     assertThat(actualType) //
         .overridingErrorMessage("Expected gesture stroke type <%s> but was <%s>.",
             gestureStrokeTypeToString(type), gestureStrokeTypeToString(actualType)) //
@@ -86,9 +87,10 @@ public class GestureOverlayViewAssert
     return this;
   }
 
-  public GestureOverlayViewAssert hasOrientation(int orientation) {
+  public GestureOverlayViewAssert hasOrientation(@GestureOverlayViewOrientation int orientation) {
     isNotNull();
     int actualOrientation = actual.getOrientation();
+    //noinspection ResourceType
     assertThat(actualOrientation) //
         .overridingErrorMessage("Expected orientation <%s> but was <%s>.",
             orientationToString(orientation), orientationToString(actualOrientation)) //
@@ -170,7 +172,7 @@ public class GestureOverlayViewAssert
     return this;
   }
 
-  private static String gestureStrokeTypeToString(int type) {
+  private static String gestureStrokeTypeToString(@GestureOverlayViewGestureStrokeType int type) {
     switch (type) {
       case GESTURE_STROKE_TYPE_SINGLE:
         return "single";
@@ -181,7 +183,7 @@ public class GestureOverlayViewAssert
     }
   }
 
-  private static String orientationToString(int orientation) {
+  private static String orientationToString(@GestureOverlayViewOrientation int orientation) {
     switch (orientation) {
       case ORIENTATION_HORIZONTAL:
         return "horizontal";

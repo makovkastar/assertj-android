@@ -66,9 +66,10 @@ public abstract class AbstractPaintAssert<S extends AbstractPaintAssert<S, A>, A
     return myself;
   }
 
-  public S hasFlags(int flags) {
+  public S hasFlags(@PaintFlags int flags) {
     isNotNull();
     int actualFlags = actual.getFlags();
+    //noinspection ResourceType
     assertThat(actualFlags) //
         .overridingErrorMessage("Expected flags <%s> but was <%s>.", flagsToString(flags),
             flagsToString(actualFlags)) //
@@ -329,7 +330,7 @@ public abstract class AbstractPaintAssert<S extends AbstractPaintAssert<S, A>, A
     return myself;
   }
 
-  private static String flagsToString(int flags) {
+  private static String flagsToString(@PaintFlags int flags) {
     return new BitMaskStringBuilder(flags) //
         .flag(ANTI_ALIAS_FLAG, "antiAlias")
         .flag(DEV_KERN_TEXT_FLAG, "devKern")

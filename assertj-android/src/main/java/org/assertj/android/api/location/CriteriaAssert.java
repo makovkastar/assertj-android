@@ -26,6 +26,7 @@ public class CriteriaAssert extends AbstractAssert<CriteriaAssert, Criteria> {
   public CriteriaAssert hasAccuracy(int accuracy) {
     isNotNull();
     int actualAccuracy = actual.getAccuracy();
+    //noinspection ResourceType
     assertThat(actualAccuracy) //
         .overridingErrorMessage("Expected accuracy <%s> but was <%s>.",
             accuracyRequirementToString(accuracy), accuracyRequirementToString(actualAccuracy)) //
@@ -37,6 +38,7 @@ public class CriteriaAssert extends AbstractAssert<CriteriaAssert, Criteria> {
   public CriteriaAssert hasBearingAccuracy(int accuracy) {
     isNotNull();
     int actualAccuracy = actual.getBearingAccuracy();
+    //noinspection ResourceType
     assertThat(actualAccuracy) //
         .overridingErrorMessage("Expected bearing accuracy <%s> but was <%s>.",
             accuracyToString(accuracy), accuracyToString(actualAccuracy)) //
@@ -48,6 +50,7 @@ public class CriteriaAssert extends AbstractAssert<CriteriaAssert, Criteria> {
   public CriteriaAssert hasHorizontalAccuracy(int accuracy) {
     isNotNull();
     int actualAccuracy = actual.getHorizontalAccuracy();
+    //noinspection ResourceType
     assertThat(actualAccuracy) //
         .overridingErrorMessage("Expected horizontal accuracy <%s> but was <%s>.",
             accuracyToString(accuracy), accuracyToString(actualAccuracy)) //
@@ -58,6 +61,7 @@ public class CriteriaAssert extends AbstractAssert<CriteriaAssert, Criteria> {
   public CriteriaAssert hasPowerRequirement(int requirement) {
     isNotNull();
     int actualRequirement = actual.getPowerRequirement();
+    //noinspection ResourceType
     assertThat(actualRequirement) //
         .overridingErrorMessage("Expected power requirement <%s> but was <%s>.",
             powerRequirementToString(requirement), powerRequirementToString(actualRequirement)) //
@@ -69,6 +73,7 @@ public class CriteriaAssert extends AbstractAssert<CriteriaAssert, Criteria> {
   public CriteriaAssert hasSpeedAccuracy(int accuracy) {
     isNotNull();
     int actualAccuracy = actual.getSpeedAccuracy();
+    //noinspection ResourceType
     assertThat(actualAccuracy) //
         .overridingErrorMessage("Expected speed accuracy <%s> but was <%s>.",
             accuracyToString(accuracy), accuracyToString(actualAccuracy)) //
@@ -80,6 +85,7 @@ public class CriteriaAssert extends AbstractAssert<CriteriaAssert, Criteria> {
   public CriteriaAssert hasVerticalAccuracy(int accuracy) {
     isNotNull();
     int actualAccuracy = actual.getVerticalAccuracy();
+    //noinspection ResourceType
     assertThat(actualAccuracy) //
         .overridingErrorMessage("Expected vertical accuracy <%s> but was <%s>.",
             accuracyToString(accuracy), accuracyToString(actualAccuracy)) //
@@ -151,7 +157,7 @@ public class CriteriaAssert extends AbstractAssert<CriteriaAssert, Criteria> {
     return this;
   }
 
-  static String accuracyRequirementToString(int accuracy) {
+  static String accuracyRequirementToString(@CriteriaAccuracyRequirement int accuracy) {
     switch (accuracy) {
       case ACCURACY_COARSE:
         return "coarse";
@@ -162,7 +168,7 @@ public class CriteriaAssert extends AbstractAssert<CriteriaAssert, Criteria> {
     }
   }
 
-  private static String accuracyToString(int accuracy) {
+  private static String accuracyToString(@CriteriaAccuracy int accuracy) {
     switch (accuracy) {
       case ACCURACY_HIGH:
         return "high";
@@ -175,7 +181,7 @@ public class CriteriaAssert extends AbstractAssert<CriteriaAssert, Criteria> {
     }
   }
 
-  static String powerRequirementToString(int requirement) {
+  static String powerRequirementToString(@CriteriaPowerRequirement int requirement) {
     switch (requirement) {
       case NO_REQUIREMENT:
         return "none";

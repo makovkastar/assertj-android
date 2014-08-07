@@ -81,9 +81,10 @@ public class GridViewAssert extends AbstractAbsListViewAssert<GridViewAssert, Gr
     return this;
   }
 
-  public GridViewAssert hasStretchMode(int mode) {
+  public GridViewAssert hasStretchMode(@GridViewStretchMode int mode) {
     isNotNull();
     int actualMode = actual.getStretchMode();
+    //noinspection ResourceType
     assertThat(actualMode) //
         .overridingErrorMessage("Expected stretch mode <%s> but was <%s>.",
             stretchModeToString(mode), stretchModeToString(actualMode)) //
@@ -102,7 +103,7 @@ public class GridViewAssert extends AbstractAbsListViewAssert<GridViewAssert, Gr
     return this;
   }
 
-  private static String stretchModeToString(int mode) {
+  private static String stretchModeToString(@GridViewStretchMode int mode) {
     switch (mode) {
       case NO_STRETCH:
         return "noStretch";

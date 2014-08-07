@@ -31,9 +31,10 @@ public abstract class AbstractLinearLayoutAssert<S extends AbstractLinearLayoutA
     return myself;
   }
 
-  public S hasOrientation(int orientation) {
+  public S hasOrientation(@LinearLayoutOrientation int orientation) {
     isNotNull();
     int actualOrientation = actual.getOrientation();
+    //noinspection ResourceType
     assertThat(actualOrientation) //
         .overridingErrorMessage("Expected orientation <%s> but was <%s>.",
             orientationToString(orientation), orientationToString(actualOrientation)) //
@@ -50,9 +51,10 @@ public abstract class AbstractLinearLayoutAssert<S extends AbstractLinearLayoutA
   }
 
   @TargetApi(HONEYCOMB)
-  public S hasShowDividers(int dividers) {
+  public S hasShowDividers(@LinearLayoutShowDividers int dividers) {
     isNotNull();
     int actualDividers = actual.getShowDividers();
+    //noinspection ResourceType
     assertThat(actualDividers) //
         .overridingErrorMessage("Expected showing dividers <%s> but was <%s>.",
             showDividerToString(dividers), showDividerToString(actualDividers)) //
@@ -103,7 +105,7 @@ public abstract class AbstractLinearLayoutAssert<S extends AbstractLinearLayoutA
     return myself;
   }
 
-  static String showDividerToString(int dividers) {
+  static String showDividerToString(@LinearLayoutShowDividers int dividers) {
     return new BitMaskStringBuilder(dividers) //
         .flag(SHOW_DIVIDER_BEGINNING, "beginning")
         .flag(SHOW_DIVIDER_MIDDLE, "middle")
@@ -111,7 +113,7 @@ public abstract class AbstractLinearLayoutAssert<S extends AbstractLinearLayoutA
         .get();
   }
 
-  private static String orientationToString(int orientation) {
+  private static String orientationToString(@LinearLayoutOrientation int orientation) {
     switch (orientation) {
       case HORIZONTAL:
         return "horizontal";

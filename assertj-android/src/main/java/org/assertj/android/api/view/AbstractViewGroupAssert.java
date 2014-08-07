@@ -45,9 +45,10 @@ public abstract class AbstractViewGroupAssert<S extends AbstractViewGroupAssert<
     return myself;
   }
 
-  public S hasDescendantFocusability(int focusability) {
+  public S hasDescendantFocusability(@ViewGroupDescendantFocusability int focusability) {
     isNotNull();
     int actualFocusability = actual.getDescendantFocusability();
+    //noinspection ResourceType
     assertThat(actualFocusability) //
         .overridingErrorMessage("Expected descendant focusability <%s> but was <%s>",
             descendantFocusabilityToString(focusability),
@@ -65,9 +66,10 @@ public abstract class AbstractViewGroupAssert<S extends AbstractViewGroupAssert<
     return myself;
   }
 
-  public S hasPersistentDrawingCache(int cache) {
+  public S hasPersistentDrawingCache(@ViewGroupPersistentDrawingCache int cache) {
     isNotNull();
     int actualCache = actual.getPersistentDrawingCache();
+    //noinspection ResourceType
     assertThat(actualCache) //
         .overridingErrorMessage("Expected persistent drawing cache <%s> but was <%s>",
             persistentDrawingCacheToString(cache), persistentDrawingCacheToString(actualCache)) //
@@ -125,7 +127,7 @@ public abstract class AbstractViewGroupAssert<S extends AbstractViewGroupAssert<
     return myself;
   }
 
-  private static String descendantFocusabilityToString(int focusability) {
+  private static String descendantFocusabilityToString(@ViewGroupDescendantFocusability int focusability) {
     switch (focusability) {
       case FOCUS_AFTER_DESCENDANTS:
         return "afterDescendants";
@@ -138,7 +140,7 @@ public abstract class AbstractViewGroupAssert<S extends AbstractViewGroupAssert<
     }
   }
 
-  private static String persistentDrawingCacheToString(int cache) {
+  private static String persistentDrawingCacheToString(@ViewGroupPersistentDrawingCache int cache) {
     switch (cache) {
       case PERSISTENT_ALL_CACHES:
         return "all";

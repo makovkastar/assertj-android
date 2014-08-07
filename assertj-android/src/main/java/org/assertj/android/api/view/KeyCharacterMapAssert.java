@@ -17,9 +17,10 @@ public class KeyCharacterMapAssert extends AbstractAssert<KeyCharacterMapAssert,
     super(actual, KeyCharacterMapAssert.class);
   }
 
-  public KeyCharacterMapAssert hasKeyboardType(int type) {
+  public KeyCharacterMapAssert hasKeyboardType(@KeyCharacterMapKeyboardType int type) {
     isNotNull();
     int actualType = actual.getKeyboardType();
+    //noinspection ResourceType
     assertThat(actualType) //
         .overridingErrorMessage("Expected keyboard type <%s> but was <%s>.",
             keyboardTypeToString(type), keyboardTypeToString(actualType)) //
@@ -38,7 +39,7 @@ public class KeyCharacterMapAssert extends AbstractAssert<KeyCharacterMapAssert,
     return this;
   }
 
-  private static String keyboardTypeToString(int type) {
+  private static String keyboardTypeToString(@KeyCharacterMapKeyboardType int type) {
     switch (type) {
       case NUMERIC:
         return "numeric";

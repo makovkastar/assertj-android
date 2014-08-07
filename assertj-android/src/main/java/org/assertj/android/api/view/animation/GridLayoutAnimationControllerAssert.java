@@ -31,9 +31,10 @@ public class GridLayoutAnimationControllerAssert extends
     return this;
   }
 
-  public GridLayoutAnimationControllerAssert hasDirection(int direction) {
+  public GridLayoutAnimationControllerAssert hasDirection(@GridLayoutAnimationControllerDirection int direction) {
     isNotNull();
     int actualDirection = actual.getDirection();
+    //noinspection ResourceType
     assertThat(actualDirection) //
         .overridingErrorMessage("Expected direction <%s> but was <%s>.",
             directionToString(direction), directionToString(actualDirection)) //
@@ -41,9 +42,10 @@ public class GridLayoutAnimationControllerAssert extends
     return this;
   }
 
-  public GridLayoutAnimationControllerAssert hasDirectionPriority(int priority) {
+  public GridLayoutAnimationControllerAssert hasDirectionPriority(@GridLayoutAnimationControllerDirectionPriority int priority) {
     isNotNull();
     int actualPriority = actual.getDirectionPriority();
+    //noinspection ResourceType
     assertThat(actualPriority) //
         .overridingErrorMessage("Expected direction priority <%s> but was <%s>.",
             directionPriorityToString(priority), directionPriorityToString(actualPriority)) //
@@ -60,7 +62,7 @@ public class GridLayoutAnimationControllerAssert extends
     return this;
   }
 
-  private static String directionToString(int direction) {
+  private static String directionToString(@GridLayoutAnimationControllerDirection int direction) {
     List<String> parts = new ArrayList<>();
     int horizontal = direction & DIRECTION_HORIZONTAL_MASK;
     int vertical = direction & DIRECTION_VERTICAL_MASK;
@@ -77,7 +79,7 @@ public class GridLayoutAnimationControllerAssert extends
     return Utils.join(parts);
   }
 
-  private static String directionPriorityToString(int priority) {
+  private static String directionPriorityToString(@GridLayoutAnimationControllerDirectionPriority int priority) {
     switch (priority) {
       case PRIORITY_NONE:
         return "none";

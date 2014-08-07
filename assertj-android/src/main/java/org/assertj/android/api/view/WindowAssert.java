@@ -53,8 +53,9 @@ public class WindowAssert extends AbstractAssert<WindowAssert, Window> {
   }
 
   @TargetApi(HONEYCOMB)
-  public WindowAssert hasFeature(int feature) {
+  public WindowAssert hasFeature(@WindowFeature int feature) {
     isNotNull();
+    //noinspection ResourceType
     assertThat(actual.hasFeature(feature)) //
         .overridingErrorMessage("Expected feature <%s> but was not present.",
             featureToString(feature)) //
@@ -94,7 +95,7 @@ public class WindowAssert extends AbstractAssert<WindowAssert, Window> {
     return this;
   }
 
-  public static String featureToString(int feature) {
+  public static String featureToString(@WindowFeature int feature) {
     switch (feature) {
       case FEATURE_ACTION_BAR:
         return "actionBar";

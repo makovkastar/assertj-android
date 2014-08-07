@@ -194,9 +194,10 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
   }
 
   @TargetApi(HONEYCOMB)
-  public S hasLayerType(int type) {
+  public S hasLayerType(@ViewLayerType int type) {
     isNotNull();
     int actualType = actual.getLayerType();
+    //noinspection ResourceType
     assertThat(actualType) //
         .overridingErrorMessage("Expected layer type <%s> but was <%s>", layerTypeToString(type),
             layerTypeToString(actualType)) //
@@ -343,9 +344,10 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
   }
 
   @TargetApi(GINGERBREAD)
-  public S hasOverScrollMode(int mode) {
+  public S hasOverScrollMode(@ViewOverscrollMode int mode) {
     isNotNull();
     int actualMode = actual.getOverScrollMode();
+    //noinspection ResourceType
     assertThat(actualMode) //
         .overridingErrorMessage("Expected over scroll mode <%s> but was <%s>",
             overScrollModeToString(mode), overScrollModeToString(actualMode)) //
@@ -556,9 +558,10 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
     return myself;
   }
 
-  public S hasScrollBarStyle(int style) {
+  public S hasScrollBarStyle(@ViewScrollBarStyle int style) {
     isNotNull();
     int actualStyle = actual.getScrollBarStyle();
+    //noinspection ResourceType
     assertThat(actualStyle) //
         .overridingErrorMessage("Expected scroll bar style <%s> but was <%s>",
             scrollBarStyleToString(style), scrollBarStyleToString(actualStyle)) //
@@ -692,6 +695,7 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
   public S hasVerticalScrollbarPosition(int position) {
     isNotNull();
     int actualPosition = actual.getVerticalScrollbarPosition();
+    //noinspection ResourceType
     assertThat(actualPosition) //
         .overridingErrorMessage("Expected vertical scroll bar position <%s> but was <%s>",
             verticalScrollBarPositionToString(position),
@@ -710,7 +714,7 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
     return myself;
   }
 
-  public S hasVisibility(int visibility) {
+  public S hasVisibility(@ViewVisibility int visibility) {
     isNotNull();
     int actualVisibility = actual.getVisibility();
     assertThat(actualVisibility) //
@@ -723,6 +727,7 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
   public S isVisible() {
     isNotNull();
     int actualVisibility = actual.getVisibility();
+    //noinspection ResourceType
     assertThat(actualVisibility) //
         .overridingErrorMessage("Expected to be visible but was %s",
             visibilityToString(actualVisibility)) //
@@ -1334,7 +1339,7 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
     return myself;
   }
 
-  public static String visibilityToString(int visibility) {
+  public static String visibilityToString(@ViewVisibility int visibility) {
     switch (visibility) {
       case VISIBLE:
         return "visible";
@@ -1347,7 +1352,7 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
     }
   }
 
-  public static String layerTypeToString(int type) {
+  public static String layerTypeToString(@ViewLayerType int type) {
     switch (type) {
       case View.LAYER_TYPE_NONE:
         return "none";
@@ -1375,7 +1380,7 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
     }
   }
 
-  public static String overScrollModeToString(int mode) {
+  public static String overScrollModeToString(@ViewOverscrollMode int mode) {
     switch (mode) {
       case OVER_SCROLL_ALWAYS:
         return "always";
@@ -1388,7 +1393,7 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
     }
   }
 
-  public static String scrollBarStyleToString(int style) {
+  public static String scrollBarStyleToString(@ViewScrollBarStyle int style) {
     switch (style) {
       case SCROLLBARS_INSIDE_INSET:
         return "insideInset";
@@ -1403,7 +1408,7 @@ public abstract class AbstractViewAssert<S extends AbstractViewAssert<S, A>, A e
     }
   }
 
-  public static String verticalScrollBarPositionToString(int position) {
+  public static String verticalScrollBarPositionToString(@ViewScrollBarPosition int position) {
     switch (position) {
       case SCROLLBAR_POSITION_DEFAULT:
         return "default";
