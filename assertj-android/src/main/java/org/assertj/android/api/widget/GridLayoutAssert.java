@@ -9,6 +9,7 @@ import static android.widget.GridLayout.ALIGN_BOUNDS;
 import static android.widget.GridLayout.ALIGN_MARGINS;
 import static android.widget.GridLayout.HORIZONTAL;
 import static android.widget.GridLayout.VERTICAL;
+import static org.assertj.android.internal.IntegerUtils.buildNamedValueString;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /** Assertions for {@link GridLayout} instances. */
@@ -114,25 +115,17 @@ public class GridLayoutAssert extends AbstractViewGroupAssert<GridLayoutAssert, 
     return this;
   }
 
-  private static String alignmentModeToString(@GridLayoutAlignmentMode int mode) {
-    switch (mode) {
-      case ALIGN_BOUNDS:
-        return "alignBounds";
-      case ALIGN_MARGINS:
-        return "alignMargins";
-      default:
-        throw new IllegalArgumentException("Unknown alignment mode: " + mode);
-    }
+  public static String alignmentModeToString(@GridLayoutAlignmentMode int mode) {
+    return buildNamedValueString(mode)
+        .value(ALIGN_BOUNDS, "alignBounds")
+        .value(ALIGN_MARGINS, "alignMargins")
+        .get();
   }
 
-  private static String orientationToString(@GridLayoutOrientation int orientation) {
-    switch (orientation) {
-      case HORIZONTAL:
-        return "horizontal";
-      case VERTICAL:
-        return "vertical";
-      default:
-        throw new IllegalArgumentException("Unknown orientation: " + orientation);
-    }
+  public static String orientationToString(@GridLayoutOrientation int orientation) {
+    return buildNamedValueString(orientation)
+        .value(HORIZONTAL, "horizontal")
+        .value(VERTICAL, "vertical")
+        .get();
   }
 }

@@ -8,7 +8,7 @@ import android.graphics.PathEffect;
 import android.graphics.Rasterizer;
 import android.graphics.Shader;
 import android.graphics.Typeface;
-import org.assertj.android.api.util.BitMaskStringBuilder;
+import java.util.Locale;
 import org.assertj.core.api.AbstractAssert;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
@@ -21,6 +21,8 @@ import static android.graphics.Paint.STRIKE_THRU_TEXT_FLAG;
 import static android.graphics.Paint.SUBPIXEL_TEXT_FLAG;
 import static android.graphics.Paint.UNDERLINE_TEXT_FLAG;
 import static android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+import static android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
+import static org.assertj.android.internal.IntegerUtils.buildBitMaskString;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class AbstractPaintAssert<S extends AbstractPaintAssert<S, A>, A extends Paint>
@@ -188,15 +190,15 @@ public abstract class AbstractPaintAssert<S extends AbstractPaintAssert<S, A>, A
     return myself;
   }
 
-  // TODO API 17
-  //public S hasTextLocale(Locale locale) {
-  //  isNotNull();
-  //  Locale actualLocale = actual.getTextLocale();
-  //  assertThat(actualLocale) //
-  //      .overridingErrorMessage("Expected text locale <%s> but was <%s>.", locale, actualLocale) //
-  //      .isEqualTo(locale);
-  //  return myself;
-  //}
+  @TargetApi(JELLY_BEAN_MR1)
+  public S hasTextLocale(Locale locale) {
+    isNotNull();
+    Locale actualLocale = actual.getTextLocale();
+    assertThat(actualLocale) //
+        .overridingErrorMessage("Expected text locale <%s> but was <%s>.", locale, actualLocale) //
+        .isEqualTo(locale);
+    return myself;
+  }
 
   public S hasTextScaleX(float scale) {
     isNotNull();
@@ -331,7 +333,7 @@ public abstract class AbstractPaintAssert<S extends AbstractPaintAssert<S, A>, A
   }
 
   private static String flagsToString(@PaintFlags int flags) {
-    return new BitMaskStringBuilder(flags) //
+    return buildBitMaskString(flags) //
         .flag(ANTI_ALIAS_FLAG, "antiAlias")
         .flag(DEV_KERN_TEXT_FLAG, "devKern")
         .flag(DITHER_FLAG, "dither")
