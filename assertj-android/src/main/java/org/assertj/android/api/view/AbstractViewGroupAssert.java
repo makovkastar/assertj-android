@@ -70,9 +70,10 @@ public abstract class AbstractViewGroupAssert<S extends AbstractViewGroupAssert<
     return myself;
   }
 
-  public S hasLayoutMode(int layoutMode) {
+  public S hasLayoutMode(@ViewGroupLayoutMode int layoutMode) {
     isNotNull();
     int actualLayoutMode = actual.getLayoutMode();
+    //noinspection ResourceType
     assertThat(actualLayoutMode) //
         .overridingErrorMessage("Expected layout mode <%s> but was <%s>.",
             layoutModeToString(layoutMode), layoutModeToString(actualLayoutMode)) //
@@ -176,7 +177,7 @@ public abstract class AbstractViewGroupAssert<S extends AbstractViewGroupAssert<
         .get();
   }
 
-  public static String layoutModeToString(int layoutMode) {
+  public static String layoutModeToString(@ViewGroupLayoutMode int layoutMode) {
     return buildNamedValueString(layoutMode)
         .value(LAYOUT_MODE_CLIP_BOUNDS, "clip_bounds")
         .value(LAYOUT_MODE_OPTICAL_BOUNDS, "optical_bounds")
